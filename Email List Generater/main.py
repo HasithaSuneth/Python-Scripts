@@ -16,7 +16,7 @@ def csv_read(path):
     with open(path, 'r') as file:
         csvreader = csv.reader(file)
         for row in csvreader:
-            list.append(row[2])
+            list.append(row[2])  # change the row depend on CSV
     list.pop(0)
     return "; ".join(list)
 
