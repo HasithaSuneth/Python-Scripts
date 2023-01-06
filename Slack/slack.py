@@ -27,7 +27,7 @@ single_msg_to_user(client, channel, "U03RKDFCJS2",
 
 
 def block_msg(client, channel, msg):
-    client.chat_postMessage(channel=channel, block=msg)
+    client.chat_postMessage(channel=channel, blocks=msg)
 
 
 msg = [
