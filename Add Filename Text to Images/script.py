@@ -1,4 +1,5 @@
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont
 
 # Configuration
@@ -22,6 +23,10 @@ def add_text_to_image(image_path):
         
         # Get image filename without extension
         filename = os.path.splitext(os.path.basename(image_path))[0].upper()
+        
+        # Remove starting digits followed by a period (ex: 01. 02.)
+        # filename = os.path.splitext(os.path.basename(image_path))[0]
+        # filename = re.sub(r"^\d+\.", "", filename).upper()
         # Load font
         font = ImageFont.truetype(font_path, font_size)
         
