@@ -1,0 +1,22 @@
+
+title:	xstore theme sale counter
+table: 	wp_postmeta 
+columns:
+	post_id:	product_id
+	meta_key:	'_et_sale_counter'
+	meta_value:	disabled / single
+
+
+title:	woocommerce produts
+table:	wp_posts
+columns:
+	post_type:	'product'
+	post_status: 'publish'
+
+
+title:	woocommerce sale price dates
+table:	wp_postmeta
+columns:
+	post_id:	product_id
+	meta_key:	'_sale_price_dates_to' '_sale_price_dates_from'
+	meta_value:	timestamp ex:'1732991400'
