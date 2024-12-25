@@ -188,7 +188,27 @@ def save_words_to_file(file_path, new_words, url):
 
     except IOError as e:
         print(f"Error writing to file: {e}")
-        
+    
+def separate_words_by_unique_characters(words):
+    """
+    Separates words into two lists:
+    - One list with words where each character appears only once.
+    - Another list with words where at least one character appears more than once.
+
+    :param words: List of words to filter.
+    :return: A tuple of two lists: (unique_char_words, duplicate_char_words).
+    """
+    unique_char_words = []
+    duplicate_char_words = []
+
+    for word in words:
+        # Check if all characters in the word are unique
+        if len(set(word)) == len(word):
+            unique_char_words.append(word)
+        else:
+            duplicate_char_words.append(word)
+
+    return unique_char_words, duplicate_char_words    
 
 def main():
     print('Options:\n 1. With Words stored at the text file (data/text.txt).\n 2. With Web Scraping\n 3. Exit\n')
@@ -227,8 +247,9 @@ def main():
     try:
         length = int(input("Enter the required word length: "))
         words = filter_by_length(words, length)
+        unique_char_words, duplicate_char_words = separate_words_by_unique_characters(words)
         print(f"{len(words)} words have {length} characters.")
-        print('Those words are:', words)
+        print('Those words are:\nUnique Words: ', unique_char_words, '\n\nOther words: ', duplicate_char_words)
     except:
         print("Invalid word length")
         sys.exit()
