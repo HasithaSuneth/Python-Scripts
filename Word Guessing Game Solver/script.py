@@ -12,8 +12,15 @@ cache_file = "data/datamuse_cache.json"
 
 def read_words_from_paragraph_file(file_path):
     """Reads a text file and extracts unique words from paragraphs."""
-    with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
-        text = file.read()
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
+            text = file.read()
+    except FileNotFoundError:
+        # Create an empty file if it does not exist
+        with open(file_path, 'w', encoding='utf-8') as file:
+            text = ""
+        print(f"File '{file_path}' did not exist and has been created.")
+        
     words = re.findall(r'\b\w+\b', text.lower())  # Extract words (case-insensitive)
     return list(set(words))  # Remove duplicates and return as a list
 
